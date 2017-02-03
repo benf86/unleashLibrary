@@ -1,11 +1,6 @@
-'use strict';
-
-
-class BaseModel {
-  constructor (params) { }
-}
+class BaseModel {}
 
 export default BaseModel;
 export {
-  BaseModel
+  BaseModel,
 };

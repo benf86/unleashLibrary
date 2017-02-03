@@ -1,10 +1,7 @@
-'use strict';
-
-
 const response = cb => (req, res, next) =>
   Promise.resolve(cb(req))
   .then(r => res.json(r))
-  .catch(console.log);
+  .catch(e => res.json(e));
 
 module.exports = globals =>
   require('./routes')(globals)

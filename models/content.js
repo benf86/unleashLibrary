@@ -1,10 +1,9 @@
-'use strict';
-
 const { BaseModel } = require('./base');
 
 
 class ContentModel extends BaseModel {
-  constructor (params) {
+  constructor(params) {
+    super();
     this.id = params.id;
     this.type = params.type;
     this.author = params.author;
@@ -22,5 +21,5 @@ class ContentModel extends BaseModel {
 
 export default ContentModel;
 export {
-  ContentModel
+  ContentModel,
 };

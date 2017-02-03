@@ -14,7 +14,7 @@ const globals = {
 
 require('./models')(globals);
 require('./repositories')(globals);
-require('./services')(globals);
+globals.services = require('./services')(globals);
 
 
 router.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));

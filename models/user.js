@@ -1,9 +1,8 @@
-'use strict';
-
 const { BaseModel } = require('./base');
 
 class UserModel extends BaseModel {
-  constructor (params) {
+  constructor(params) {
+    super();
     this.id = params.id;
     this.role = params.role;
     this.idUnleasher = params.id_unleasher;
@@ -15,5 +14,5 @@ class UserModel extends BaseModel {
 
 export default UserModel;
 export {
-  UserModel
+  UserModel,
 };
