@@ -1,9 +1,14 @@
+const routes = require('./routes');
+
 const response = cb => (req, res, next) =>
-  Promise.resolve(cb(req))
+  Promise.resolve(cb(req.params)(req.query)(req.body))
   .then(r => res.json(r))
-  .catch(e => res.json(e));
+  .catch((e) => {
+    console.error(e);
+    res.json(e);
+  });
 
 module.exports = globals =>
-  require('./routes')(globals)
+  (routes(globals)
     .forEach(route =>
-      globals.router[route.method](route.route, response(route.cb)));
+      globals.router[route.method](route.route, response(route.cb))));
