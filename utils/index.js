@@ -1,1 +1,1 @@
-module.exports = globals => {};
+module.exports = globals => ({});
