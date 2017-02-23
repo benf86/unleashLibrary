@@ -5,7 +5,7 @@ const response = cb => (req, res, next) =>
   .then(r => res.json(r))
   .catch((e) => {
     console.error(e);
-    res.json(e);
+    res.json(e.code === 'SQLITE_ERROR' ? e.message : e);
   });
 
 module.exports = globals =>
