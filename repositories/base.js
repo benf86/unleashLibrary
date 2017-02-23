@@ -1,6 +1,6 @@
 module.exports = globals => modelName => ({
-  get: params => query => body => globals.db(`${modelName}s`).where(params || true),
-  create: params => query => body => globals.db(`${modelName}s`).insert(body),
-  update: params => query => body => globals.db(`${modelName}s`).where(params).update(body),
-  delete: params => query => body => globals.db(`${modelName}s`).where(params).delete(),
+  get: meta => data => globals.db(`${modelName}s`).where(meta || true),
+  create: meta => data => globals.db(`${modelName}s`).insert(data),
+  update: meta => data => globals.db(`${modelName}s`).where(meta).update(data),
+  delete: meta => data => globals.db(`${modelName}s`).where(meta).delete(),
 });
