@@ -1,6 +1,6 @@
-class BaseModel {}
+class Base {}
 
-export default BaseModel;
+export default Base;
 export {
-  BaseModel,
+  Base,
 };

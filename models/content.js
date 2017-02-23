@@ -1,7 +1,7 @@
-const { BaseModel } = require('./base');
+const { Base } = require('./base');
 
 
-class ContentModel extends BaseModel {
+class Content extends Base {
   constructor(params) {
     super();
     this.id = params.id;
@@ -19,7 +19,7 @@ class ContentModel extends BaseModel {
   }
 }
 
-export default ContentModel;
+export default Content;
 export {
-  ContentModel,
+  Content,
 };
