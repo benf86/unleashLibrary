@@ -8,7 +8,7 @@ const environments = { dev, test, staging, production };
 
 const defaultSettings = {
   infrastructure: {
-    port: 3000,
+    port: 8888,
   },
   db: {},
 };

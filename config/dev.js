@@ -8,4 +8,7 @@ module.exports = {
       directory: './data/migrations',
     },
   },
+  externalAPIs: {
+    userProfiles: 'http://localhost:3000/profiles',
+  },
 };

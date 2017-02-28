@@ -15,4 +15,7 @@ module.exports = {
       tableName: 'knex_migrations',
     },
   },
+  externalAPIs: {
+    userProfiles: 'https://txkaf3ohhf.execute-api.us-west-2.amazonaws.com/prod/profiles',
+  },
 };
