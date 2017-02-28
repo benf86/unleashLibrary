@@ -21,7 +21,7 @@ module.exports = globals => [
     description: 'Modify a piece of content',
     method: 'put',
     route: '/content/:id',
-    cb: globals.services.content.modify,
+    cb: globals.services.content.update,
   },
   {
     description: 'Set next editorial stage for piece of content',
