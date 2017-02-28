@@ -20,7 +20,6 @@ const globals = {
 router.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 router.use(bodyParser.json({ limit: '50mb' }));
 
-globals.models = require('./models')(globals);
 globals.repositories = require('./repositories')(globals);
 globals.services = require('./services')(globals);
 require('./controllers/rest/router')(globals);
