@@ -1,9 +1,11 @@
 const Promise = require('bluebird');
 
 const routes = require('./routes');
+const authorization = require('./authorization');
 
-const response = cb => (req, res, next) =>
-  Promise.resolve(cb(req.params)(req.query)(req.body))
+const response = cb => (req, res, next) => (!authorization(req)
+  ? res.status(403) && res.send()
+  : Promise.resolve(cb(req.params)(req.query)(req.body))
   .then(r => Array.isArray(r)
     ? r.map(e => e.validate())
     : r)
@@ -14,7 +16,7 @@ const response = cb => (req, res, next) =>
   .catch((e) => {
     console.error(e);
     res.json(e.code === 'SQLITE_ERROR' ? e.message : e);
-  });
+  }));
 
 module.exports = globals =>
   (routes(globals)

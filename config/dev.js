@@ -1,3 +1,5 @@
+const authorizationKeys = require('./authorizationKeysDev');
+
 module.exports = {
   db: {
     client: 'sqlite3',
@@ -11,4 +13,5 @@ module.exports = {
   externalAPIs: {
     userProfiles: 'http://localhost:3000/profiles',
   },
+  authorizationKeys,
 };
