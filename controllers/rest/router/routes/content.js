@@ -23,4 +23,16 @@ module.exports = globals => [
     route: '/content/:id',
     cb: globals.services.content.modify,
   },
+  {
+    description: 'Set next editorial stage for piece of content',
+    method: 'put',
+    route: '/content/:id/nextStage/:stage?',
+    cb: globals.services.content.nextStage,
+  },
+  {
+    description: 'Delete the piece of content',
+    method: 'delete',
+    route: '/content/:id',
+    cb: globals.services.content.delete,
+  },
 ];

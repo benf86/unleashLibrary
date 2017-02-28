@@ -2,6 +2,9 @@ const routes = require('./routes');
 
 const response = cb => (req, res, next) =>
   Promise.resolve(cb(req.params)(req.query)(req.body))
+  .then(r => Array.isArray(r)
+    ? r.map(e => e.validate())
+    : r)
   .then(r => res.json(r))
   .catch((e) => {
     console.error(e);
