@@ -7,29 +7,43 @@ class Content extends Base {
     super();
     this.id = params.id;
     this.type = params.type;
-    this.author = params.author;
+    this.id_author = params.id_author.toString();
     this.link = params.link;
-    this.public = !!params.public;
-    this.published = !!params.published;
-    this.upvotes = params.upvotes;
-    this.createdAt = params.created_at || new Date().toUTCString();
-    this.modifiedAt = params.modified_at || new Date().toUTCString();
-    this.createdBy = params.created_by || "0";
-    this.unleashPathId = params.id_unleash_path;
-    this.unleashNodeId = params.id_unleash_node;
+    this.public = !!params.public || false;
+    this.published = !!params.published || false;
+    this.title = params.title;
+    this.upvotes = params.upvotes || 0;
+    this.stage = params.stage || 'backlog';
+    this.created_at = params.created_at || new Date().toUTCString();
+    this.updated_at = params.updated_at || new Date().toUTCString();
+    this.created_by = params.created_by || "0";
+    this.id_unleash_path = params.id_unleash_path;
+    this.id_unleash_node = params.id_unleash_node;
+  }
+
+  nextStage (stage) {
+    this.stage = stage && Content.stages.indexOf(stage) > -1
+      ? stage
+      : Content.stages[Content.stages.indexOf(this.stage) + 1]
+        || Content.stages[Content.stages.length - 1];
+    return this;
   }
 }
+
+Content.stages = ['backlog', 'research_in_progress', 'research_done', 'writing_in_progress', 'writing_done', 'proofreading_technical', 'proofreading_linguistic', 'ready_for_publishing', 'published'];
 
 Content.schema = joi.compile(joi.object().keys({
   type: joi.string(),
   author: joi.any(),
   link: joi.string(),
+  title: joi.string(),
   public: joi.boolean(),
   published: joi.boolean(),
   upvotes: joi.number(),
-  createdAt: joi.string(),
-  modifiedAt: joi.string(),
-  createdBy: joi.string(),
+  stage: joi.string(),
+  created_at: joi.string(),
+  updated_at: joi.string(),
+  created_by: joi.string(),
 }));
 
 module.exports = Content;
