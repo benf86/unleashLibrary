@@ -1,2 +1,3 @@
 module.exports = globals =>
-  require('./content')(globals);
+  require('./content')(globals)
+  .concat(require('./user')(globals));

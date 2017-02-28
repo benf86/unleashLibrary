@@ -14,6 +14,15 @@ module.exports = (globals) => {
             picture: author.picture,
           } }))))),
 
+    getByUser: params => query => body => base.get({ id_author: params.id })(query)(body)
+      .then(r =>
+        Promise.all(r.map(e =>
+          globals.repositories.user.get(e.id_author)()
+          .then(author => _.merge(e, { author: {
+            full_name: author.fullName,
+            picture: author.picture,
+          } }))))),
+
     nextStage: params => query => body => base.get({ id: params.id })(query)(body)
       .then(r => r.map(e => e.nextStage(params.stage)))
       .then(r => globals.repositories.content.update({ id: r[0].id })(_.omit(r[0].validate(), 'author')))

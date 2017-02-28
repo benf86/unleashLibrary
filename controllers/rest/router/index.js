@@ -1,3 +1,5 @@
+const Promise = require('bluebird');
+
 const routes = require('./routes');
 
 const response = cb => (req, res, next) =>
@@ -5,6 +7,9 @@ const response = cb => (req, res, next) =>
   .then(r => Array.isArray(r)
     ? r.map(e => e.validate())
     : r)
+  .tap(r => Array.isArray(r) && r.length === 0
+    ? res.status(404)
+    : res.status(200))
   .then(r => res.json(r))
   .catch((e) => {
     console.error(e);
