@@ -34,7 +34,7 @@ Content.stages = ['backlog', 'research_in_progress', 'research_done', 'writing_i
 
 Content.schema = joi.compile(joi.object().keys({
   type: joi.string(),
-  author: joi.any(),
+  id_author: joi.string(),
   link: joi.string(),
   title: joi.string(),
   public: joi.boolean(),
@@ -43,7 +43,6 @@ Content.schema = joi.compile(joi.object().keys({
   stage: joi.string(),
   created_at: joi.string(),
   updated_at: joi.string(),
-  created_by: joi.string(),
 }));
 
 module.exports = Content;

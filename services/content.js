@@ -5,23 +5,9 @@ const baseServices = require('./base');
 module.exports = (globals) => {
   const base = baseServices(globals)('content');
   return _.merge({}, base, {
-    get: params => query => body => base.get(params)(_.omitBy(query, _.isNil))(body)
-      .then(r =>
-        Promise.all(r.map(e =>
-          globals.repositories.user.get(e.id_author)()
-          .then(author => _.merge(e, { author: {
-            full_name: author.fullName,
-            picture: author.picture,
-          } }))))),
+    get: params => query => body => base.get(params)(_.omitBy(query, _.isNil))(body),
 
-    getByUser: params => query => body => base.get({ id_author: params.id })(query)(body)
-      .then(r =>
-        Promise.all(r.map(e =>
-          globals.repositories.user.get(e.id_author)()
-          .then(author => _.merge(e, { author: {
-            full_name: author.fullName,
-            picture: author.picture,
-          } }))))),
+    getByUser: params => query => body => base.get({ id_author: params.id })(query)(body),
 
     nextStage: params => query => body => base.get({ id: params.id })(query)(body)
       .then(r => r.map(e => e.nextStage(params.stage)))
